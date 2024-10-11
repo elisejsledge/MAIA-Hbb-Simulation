@@ -1,0 +1,18 @@
+#
+# condor_submit genHbb_condor_sub.txt
+#
+Universe = Vanilla
++SingularityImage = "osdf:///ospool/uc-shared/project/futurecolliders/ejsledge/tmp/k4toroid.sif"
+Executable = genHbb_condor_exe.sh
+Input = mumu_H_bb_10TeV.sin
+Requirements = ( HAS_SINGULARITY ) && ( HAS_CVMFS_unpacked_cern_ch )
+should_transfer_files = YES
+Output = genHbb_condor_out.$(Cluster)_$(Process).txt
+Log = genHbb_condor_log.$(Cluster)_$(Process).txt
+Error = genHbb_condor_err.$(Cluster)_$(Process).txt
+when_to_transfer_output = ON_EXIT
+request_cpus = 1
+request_disk = 15 GB
+request_memory = 10 GB
++ProjectName="collab.muoncollider"
+Queue 1
